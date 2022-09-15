@@ -1,4 +1,3 @@
-
 package com.ChitChat;
 
 import com.database.DataTransferMysql;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 public class Registration extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -21,25 +19,31 @@ public class Registration extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Registration</title>");            
+            out.println("<title>Servlet Registration</title>");
             out.println("</head>");
             out.println("<body>");
-            
+
             String firstName = request.getParameter("first_name");
             String lastName = request.getParameter("last_name");
             String userName = request.getParameter("user_name");
             String gender = request.getParameter("gender");
             String password = request.getParameter("password");
+            String repeatPassword = request.getParameter("repeat_password");
             String email = request.getParameter("user_email");
-            
-            DataTransferMysql.sendData(firstName, lastName, userName, gender, password, email);
-            
-            RequestDispatcher rd = request.getRequestDispatcher("index.html");
-            rd.forward(request, response);
-            
-            
-            out.println("</body>");
-            out.println("</html>");
+
+            if (password == repeatPassword && firstName != null && lastName != null && userName != null && gender != null && password != null && repeatPassword != null && email != null) {
+                DataTransferMysql.sendData(firstName, lastName, userName, gender, password, email);
+
+                RequestDispatcher rd = request.getRequestDispatcher("RegisterSuccess.html");
+                rd.forward(request, response);
+
+                out.println("</body>");
+                out.println("</html>");
+            } else {
+                RequestDispatcher rd = request.getRequestDispatcher("RegisterFailure.html");
+                rd.forward(request, response);
+
+            }
         }
     }
 
