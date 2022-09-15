@@ -31,7 +31,7 @@ public class Registration extends HttpServlet {
             String repeatPassword = request.getParameter("repeat_password");
             String email = request.getParameter("user_email");
 
-            if (password == repeatPassword && firstName != null && lastName != null && userName != null && gender != null && password != null && repeatPassword != null && email != null) {
+            if (password.equals(repeatPassword) && firstName != null && lastName != null && userName != null && gender != null && password != null && repeatPassword != null && email != null) {
                 DataTransferMysql.sendData(firstName, lastName, userName, gender, password, email);
 
                 RequestDispatcher rd = request.getRequestDispatcher("RegisterSuccess.html");
@@ -40,7 +40,7 @@ public class Registration extends HttpServlet {
                 out.println("</body>");
                 out.println("</html>");
             } else {
-                RequestDispatcher rd = request.getRequestDispatcher("RegisterFailure.html");
+                RequestDispatcher rd = request.getRequestDispatcher("RegisterFailed.html");
                 rd.forward(request, response);
 
             }
