@@ -4,6 +4,7 @@
  */
 package com.ChitChat;
 
+import com.database.FetchingDataForProfile;
 import com.database.CheckingEntity;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -46,7 +47,7 @@ public class login extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             
-            String userName = request.getParameter("user_name");
+            String user_Name = request.getParameter("user_name");
             String password = request.getParameter("password");
             out.println("<div class=\"alert alert-warning d-flex align-items-center alert-dismissible fade show\" role=\"alert\">\n" +
 "  <strong>Sorry!... </strong> You are not registered yet. Please Register first.\n" +
@@ -54,12 +55,30 @@ public class login extends HttpServlet {
 "</div>");
             
             try {
-                int id = CheckingEntity.checkResult(userName, password);
+                int id = CheckingEntity.checkResult(user_Name, password);
+                FetchingDataForProfile user = new FetchingDataForProfile();
                 if (id == -1) {
                     RequestDispatcher rd = request.getRequestDispatcher("registration.html");
                     rd.include(request, response);
                 } else {
                   // fetching data from database and le ja usko profile page pe
+                  user.fetchingData(id);
+                  
+                String firstName= user.getFirstName();
+                String lastName= user.getLastName();
+                String userName= user.getUserName();
+                String gender= user.getGender();
+                String email= user.getEmail();
+                
+                request.setAttribute("firstName", firstName);
+                request.setAttribute("lastName", lastName);
+                request.setAttribute("userName", userName);
+                request.setAttribute("gender", gender);
+                request.setAttribute("email", email);
+                
+                RequestDispatcher rd = request.getRequestDispatcher("Profile.jsp");
+                    rd.forward(request, response);
+                
                 }
                 
             } catch (Exception e) {

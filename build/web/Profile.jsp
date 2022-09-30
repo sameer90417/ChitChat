@@ -15,8 +15,16 @@
         
         
         <% 
-                            Connection con = ConnectionProvider.getConnection();
-                            String q = "insert into registrationcc(first_name,last_name,user_name,gender,password,email) values (?,?,?,?,?,?)";
+                            //getting Attribute
+                            String firstName=(String)request.getAttribute("firstName");
+                             String lastName=(String)request.getAttribute("lastName");
+                              String userName=(String)request.getAttribute("userName");
+                               String gender=(String)request.getAttribute("gender");
+                                String email=(String)request.getAttribute("email");
+                                
+                           out.println(firstName);
+                           out.println(lastName);
+
         %>
         
     </body>
