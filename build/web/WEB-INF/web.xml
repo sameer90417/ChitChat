@@ -15,6 +15,10 @@
         <servlet-name>CreateChatboard</servlet-name>
         <servlet-class>com.ChitChat.Chatboard.CreateChatboard</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>messageServlet</servlet-name>
+        <servlet-class>com.ChitChat.Chatboard.messageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/Reg</url-pattern>
@@ -26,6 +30,10 @@
     <servlet-mapping>
         <servlet-name>CreateChatboard</servlet-name>
         <url-pattern>/CreateChatboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>messageServlet</servlet-name>
+        <url-pattern>/messageServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

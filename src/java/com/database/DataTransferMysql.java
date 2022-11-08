@@ -13,7 +13,7 @@ public class DataTransferMysql {
             Connection con = ConnectionProvider.getConnection();
             
              // Create a query
-            String q = "insert into registrationcc(first_name,last_name,user_name,gender,password,email) values (?,?,?,?,?,?)";
+            String q = "insert into registrationcc(first_name,last_name,user_name,gender,password,email, chatId) values (?,?,?,?,?,?,'0')";
 
             // Get the PreparedStatement object
 

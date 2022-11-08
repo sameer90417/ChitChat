@@ -95,6 +95,17 @@
     </head>
 
     <body>
+        
+                    <%
+                //getting Attribute
+                String firstName = (String) request.getAttribute("firstName");
+                String lastName = (String) request.getAttribute("lastName");
+                String userName = (String) request.getAttribute("userName");
+                String gender = (String) request.getAttribute("gender");
+                String email = (String) request.getAttribute("email");
+                int id = (int) request.getAttribute("Id");
+                
+            %>
 
         <!-- Start navbar -->
 
@@ -116,10 +127,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto mb-2 mb-lg-0 mx-5">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Profile.html">Home</a>
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a action="CreateChatboard" id="chatboard" class="nav-link" href="#">ChatBoard</a>
+                            <a id="chatboard" class="nav-link" href="CreateChatboard?Id= <%=id %>">ChatBoard</a>
                         </li>
 
                         <li class="nav-item">
@@ -374,16 +385,6 @@
                 </div>
             </div>
 
-            <%
-                //getting Attribute
-                String firstName = (String) request.getAttribute("firstName");
-                String lastName = (String) request.getAttribute("lastName");
-                String userName = (String) request.getAttribute("userName");
-                String gender = (String) request.getAttribute("gender");
-                String email = (String) request.getAttribute("email");
-
-
-            %>
 
             <!-- Start Profile botton pannel -->
             <div style="visibility: hidden;" id="profilepanel" class="position-absolute top-0 end-0">

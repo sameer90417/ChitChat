@@ -70,6 +70,7 @@ public class login extends HttpServlet {
                 String gender= user.getGender();
                 String email= user.getEmail();
                 
+                request.setAttribute("Id", id);
                 request.setAttribute("firstName", firstName);
                 request.setAttribute("lastName", lastName);
                 request.setAttribute("userName", userName);
